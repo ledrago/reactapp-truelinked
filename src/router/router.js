@@ -7,7 +7,7 @@ export default () => {
     return (
         <Switch>
             <Route exact path={["/", '/posts']} component={Posts} />
-            <Route exact path='posts/:id' component={PostItem} />
+            <Route exact path='/posts/:id' component={PostItem} />
         </Switch>
     )
 }

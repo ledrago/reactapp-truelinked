@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import Table from '@material-ui/core/Table';
@@ -9,6 +10,21 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
+
+const StyledTableCellHeader = withStyles((theme) => ({
+    head: {
+        backgroundColor: '#fcfa68'
+    }
+}))(TableCell)
+
+const StyledTableRow = withStyles(() => ({
+    root: {
+        '&:hover': {
+            backgroundColor: '#f9ffc7 !important',
+            cursor: 'pointer',
+        }
+    } 
+}))(TableRow)
 
 const TableComponent = ({rowsData}) => {
 
@@ -35,20 +51,20 @@ const TableComponent = ({rowsData}) => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="right">Id</TableCell>
-                        <TableCell align="right">User Id</TableCell>
-                        <TableCell align="right">Title</TableCell>
+                        <StyledTableCellHeader align="right">Id</StyledTableCellHeader>
+                        <StyledTableCellHeader align="right">User Id</StyledTableCellHeader>
+                        <StyledTableCellHeader align="right">Title</StyledTableCellHeader>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rowsData?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                        <TableRow key={row.title} onClick={(event) => handleRowClick(event, row.id)}>
+                        <StyledTableRow hover key={row.title} onClick={(event) => handleRowClick(event, row.id)}>
                             <TableCell align="right" component="th" scope="row">
                                 {row.id}
                             </TableCell>
                             <TableCell align="right">{row.userId}</TableCell>
                             <TableCell align="right">{row.title}</TableCell>
-                        </TableRow>
+                        </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
