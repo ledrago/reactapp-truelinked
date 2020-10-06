@@ -1,40 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'
-import PostService from '../services/PostService';
-import UserService from '../services/UserService'
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import PostService from "../services/PostService";
+import UserService from "../services/UserService";
 
-import Layout from '../components/LayoutComponent';
+import Layout from "../components/LayoutComponent";
+import ArticleComponent from "../components/ArticleComponent";
+import AuthorComponent from "../components/AuthorComponent";
+
+import postItemStyle from "./PostItem.module.scss";
 
 const PostItem = () => {
-
     const location = useLocation();
     const [postItem, setPostItem] = useState(null);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
+        const currentUrl = location.pathname;
+        const urlPostId = currentUrl.split("/")[2];
+        getPostData(urlPostId);
+    }, [location]);
 
-        const currentUrl = (location.pathname);
-        const urlPostId = currentUrl.split('/')[2];
-        getPostAndUserData(urlPostId);
+    useEffect(() => {
+        postItem && getUserData();
+    }, [postItem]);
 
-    }, [location])
-
-    const getPostAndUserData = (urlPostId) => {
-        PostService.getPost(urlPostId).then(postRes => {
+    const getPostData = (urlPostId) => {
+        PostService.getPost(urlPostId).then((postRes) => {
             setPostItem(postRes.data);
-            UserService.getUser(postRes.data.userId).then(userRes => {
-                setUser(userRes.data)
-                console.log('res : ', userRes.data)
-            })
-            
-        })
-    }
+        });
+    };
+
+    const getUserData = () => {
+        UserService.getUser(postItem.userId).then((userRes) => {
+            setUser(userRes.data);
+        });
+    };
 
     return (
         <Layout>
-        <p>Post Item</p>
+            <div className={postItemStyle.container}>
+                <ArticleComponent articleData={postItem} />
+                <AuthorComponent userData={user} />
+            </div>
         </Layout>
-    )
-}
+    );
+};
 
 export default PostItem;

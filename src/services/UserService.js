@@ -1,16 +1,16 @@
-import axios from 'axios'
+import axios from "axios";
 
-const baseUrl = 'https://jsonplaceholder.typicode.com/users';
+const baseUrl = "https://jsonplaceholder.typicode.com/users";
 
 const getUsers = () => {
-    return axios.get(`${baseUrl}`);
-}
+  return axios.get(`${baseUrl}`);
+};
 
-const getUser = id => {
-    return axios.get(`${baseUrl}/${id}`)
-}
+const getUser = (id) => {
+  return axios.get(`${baseUrl}/${id}`);
+};
 
 export default {
-    getUsers,
-    getUser
-}
+  getUsers,
+  getUser,
+};
