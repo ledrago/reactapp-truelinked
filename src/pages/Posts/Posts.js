@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PostService from "../services/PostService";
+import PostService from "../../services/PostService";
 
-import TableComponent from "../components/TableComponent";
-import Layout from "../components/LayoutComponent";
+import TableComponent from "../../components/Table/TableComponent";
+import Layout from "../../components/Layout/LayoutComponent";
 
 const Posts = () => {
   const [postsList, setPostsList] = useState([]);

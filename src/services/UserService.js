@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const baseUrl = "https://jsonplaceholder.typicode.com/users";
+import { environment } from '../environment';
+const baseUrl = `${environment.baseUrl}/users`
 
 const getUsers = () => {
   return axios.get(`${baseUrl}`);

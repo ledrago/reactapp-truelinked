@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Posts from "../pages/Posts";
-import PostItem from "../pages/PostItem";
+import Posts from "../pages/Posts/Posts";
+import PostItem from "../pages/PostItem/PostItem";
 
 export default () => {
   return (

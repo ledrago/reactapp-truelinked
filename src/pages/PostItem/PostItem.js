@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import PostService from "../services/PostService";
-import UserService from "../services/UserService";
+import PostService from "../../services/PostService";
+import UserService from "../../services/UserService";
 
-import Layout from "../components/LayoutComponent";
-import ArticleComponent from "../components/ArticleComponent";
-import AuthorComponent from "../components/AuthorComponent";
+import Layout from "../../components/Layout/LayoutComponent";
+import ArticleComponent from "../../components/Article/ArticleComponent";
+import AuthorComponent from "../../components/Author/AuthorComponent";
 
 import postItemStyle from "./PostItem.module.scss";
 
